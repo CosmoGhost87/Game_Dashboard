@@ -19,7 +19,10 @@ df3["date"] = df3["date"].str[-4:].astype(int)
 df3["publisher"] = df3['publisher'].str.replace(" ","")
 df3["developer"] = df3['developer'].str.replace(" ","")
 dftemp = df2["genre"].str.split(",",expand=True)
-df2["genre"] = dftemp[0]
+df2["genre"] = df2["genre"].str.split(",")
+df2["genre"] = df2["genre"]
+#df2["genre"] = df2['genre'].str.replace(",",", ")
+#df2["genre"] = dftemp[0]
 df2["cscore"] = df2["cscore"]/10
 df3["cscore"] = df3["cscore"]/10
 
@@ -56,5 +59,5 @@ df3["platform"] = df3["platform"].str.replace("WII","Wii")
 df3["platform"] = df3["platform"].str.replace("WIIU","WiiU")
 df = pd.concat([df1,df2,df3])
 df = df.dropna(subset=['genre'])
-#df.to_csv("final_dataset.csv")
-print(df3)
+#df.to_csv("genre_dataset.csv")
+print(df2)
