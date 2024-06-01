@@ -28,13 +28,13 @@ temp2 = pd.merge(left2,right2,how="cross")
 dfheat2 = pd.merge(dfheat2,temp2,how="right").fillna(0)
 fig = go.Figure()
 fig.add_trace(go.Pie(labels=dfpie.index, values=dfpie["index"], marker={'colors':px.colors.qualitative.Dark24}))
-fig.update_layout(template = "plotly_dark",autosize = False, width = 1470, height = 1000, title = "Количество выпущенных игр по платформам")
+fig.update_layout(template = "plotly_dark", paper_bgcolor='rgba(0,0,0,0)',autosize = False, width = 1470, height = 1000, title = "Количество выпущенных игр по платформам")
 fig2 = go.Figure()
 fig2.add_trace(go.Heatmap(x=dfheat1["genre"], y=dfheat1["platform"], z=dfheat1["index"]))
-fig2.update_layout(template = "plotly_dark", width = 1470, height = 1000, autosize = False, title = "Количество выпущенных игр по жанрам и платформам (первая половина)")
+fig2.update_layout(template = "plotly_dark", paper_bgcolor='rgba(0,0,0,0)', width = 1470, height = 1000, autosize = False, title = "Количество выпущенных игр по жанрам и платформам (первая половина)")
 fig3 = go.Figure()
 fig3.add_trace(go.Heatmap(x=dfheat2["genre"], y=dfheat2["platform"], z=dfheat2["index"]))
-fig3.update_layout(template = "plotly_dark", width = 1470, height = 1000, autosize = False, title = "Количество выпущенных игр по жанрам и платформам (вторая половина)")
+fig3.update_layout(template = "plotly_dark", paper_bgcolor='rgba(0,0,0,0)', width = 1470, height = 1000, autosize = False, title = "Количество выпущенных игр по жанрам и платформам (вторая половина)")
 layout = dbc.Container([
     dbc.Row([
         dbc.Col([

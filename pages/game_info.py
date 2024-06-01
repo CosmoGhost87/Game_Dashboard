@@ -53,8 +53,10 @@ def update_text(game):
     year = "Год выпуска: " + str(df.loc[df["name"] == game]["date"].sort_values(ascending=False).reset_index().loc[0]["date"])
     platform = "Платформа: " + df.loc[df["name"] == game]["platform"].sort_values(ascending=False).reset_index().loc[0]["platform"]
     genre = "Жанр: " + df.loc[df["name"] == game]["genre"].sort_values(ascending=False).reset_index().loc[0]["genre"]
-    cscore = go.Figure(go.Indicator(mode="gauge+number", gauge={'axis':{'range':[0,10]}}, value=float(df.loc[df["name"] == game]["cscore"].sort_values(ascending=False).reset_index().loc[0]["cscore"])))
-    cscore.update_layout(template = "plotly_dark")
-    uscore = go.Figure(go.Indicator(mode="gauge+number", gauge={'axis':{'range':[0,10]}}, value=float(df.loc[df["name"] == game]["uscore"].sort_values(ascending=False).reset_index().loc[0]["uscore"])))
-    uscore.update_layout(template = "plotly_dark")
+    cscoreValue = float(df.loc[df["name"] == game]["cscore"].sort_values(ascending=False).reset_index().loc[0]["cscore"])
+    cscore = go.Figure(go.Indicator(mode="gauge+number", gauge={'axis':{'range':[0,10]},'bar':{'color':'rgb' + str(((1-cscoreValue/10)*255,cscoreValue/10*255,0))}}, value=cscoreValue))
+    cscore.update_layout(template = "plotly_dark", paper_bgcolor='rgba(0,0,0,0)')
+    uscoreValue = float(df.loc[df["name"] == game]["uscore"].sort_values(ascending=False).reset_index().loc[0]["uscore"])
+    uscore = go.Figure(go.Indicator(mode="gauge+number", gauge={'axis':{'range':[0,10]},'bar':{'color':'rgb' + str(((1-uscoreValue/10)*255,uscoreValue/10*255,0))}}, value=uscoreValue))
+    uscore.update_layout(template = "plotly_dark", paper_bgcolor='rgba(0,0,0,0)')
     return developer,publisher,year,platform,genre,cscore,uscore
