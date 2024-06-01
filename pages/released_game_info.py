@@ -13,10 +13,10 @@ fig = go.Figure()
 fig.add_trace(go.Scatter(x=df.groupby(by="date").count().index, y=df.groupby(by="date").count()["index"], name='Amount', marker_color = '#a60c0c', mode="lines+markers"))
 fig.update_layout(xaxis_title_text = 'Year', yaxis_title_text = 'Amount', template = "plotly_dark", width = 1470, autosize = False, title = "Количество выпущенных игр по годам")
 fig2 = go.Figure()
-fig2.add_trace(go.Histogram(x=taildf1.sort_index().index, y=taildf1.sort_index()["index"], histfunc="max", name='Amount', marker_color = '#a60c0c'))
+fig2.add_trace(go.Histogram(x=taildf1.sort_index().index, y=taildf1.sort_values(by="index", ascending=False)["index"], histfunc="max", name='Amount', marker_color = '#a60c0c'))
 fig2.update_layout(xaxis_title_text = 'Genre', yaxis_title_text = 'Amount', template = "plotly_dark", width = 1470, autosize = False, title = "Количество выпущенных игр по жанрам (первая половина)")
 fig3 = go.Figure()
-fig3.add_trace(go.Histogram(x=taildf2.sort_index().index, y=taildf2.sort_index()["index"], histfunc="max", name='Amount', marker_color = '#a60c0c'))
+fig3.add_trace(go.Histogram(x=taildf2.sort_index().index, y=taildf2.sort_values(by="index", ascending=False)["index"], histfunc="max", name='Amount', marker_color = '#a60c0c'))
 fig3.update_layout(xaxis_title_text = 'Genre', yaxis_title_text = 'Amount', template = "plotly_dark", width = 1470, autosize = False, title = "Количество выпущенных игр по жанрам (вторая половина)")
 layout = dbc.Container([
     dbc.Row([
@@ -30,7 +30,7 @@ layout = dbc.Container([
         dbc.Col([                
             dbc.Card([
                 dbc.Row([
-                    dbc.CardHeader("ТОП-1")
+                    dbc.CardHeader(headdf.index[0])
                 ]),
                 dbc.Row([
                     dbc.Col([
@@ -43,7 +43,7 @@ layout = dbc.Container([
         dbc.Col([                
             dbc.Card([
                 dbc.Row([
-                    dbc.CardHeader("ТОП-2")
+                    dbc.CardHeader(headdf.index[1])
                 ]),
                 dbc.Row([
                     dbc.Col([
@@ -56,7 +56,7 @@ layout = dbc.Container([
         dbc.Col([                
             dbc.Card([
                 dbc.Row([
-                    dbc.CardHeader("ТОП-3")
+                    dbc.CardHeader(headdf.index[2])
                 ]),
                 dbc.Row([
                     dbc.Col([
@@ -69,7 +69,7 @@ layout = dbc.Container([
         dbc.Col([                
             dbc.Card([
                 dbc.Row([
-                    dbc.CardHeader("ТОП-4")]),
+                    dbc.CardHeader(headdf.index[3])]),
                 dbc.Row([
                     dbc.Col([
                         dbc.CardBody(
@@ -81,7 +81,7 @@ layout = dbc.Container([
         dbc.Col([                
             dbc.Card([
                 dbc.Row([
-                    dbc.CardHeader("ТОП-5")]),
+                    dbc.CardHeader(headdf.index[4])]),
                 dbc.Row([
                     dbc.Col([
                         dbc.CardBody(
