@@ -13,8 +13,11 @@ layout = dbc.Container([
         html.Div([
             dcc.Dropdown(
                 id = 'game',
-                options = [{'label': i, 'value': i} for i in games],
-                value = games[0]
+                options = [{'label':i, 'value': i} for i in games],
+                value = games[0],
+                clearable=False,
+                className="dbc",
+                style={'border':'1px solid'}
             )
         ])
     ]),

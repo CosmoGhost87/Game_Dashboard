@@ -1,0 +1,7 @@
+/* dropdown menu options */
+.dbc .VirtualizedSelectOption {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border: 1px solid #30155a;
+    border-style: solid none none none;
+  }

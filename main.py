@@ -2,8 +2,9 @@ from dash import Dash, html, dcc, Output, Input
 import dash_bootstrap_components as dbc
 from pages import games_score,released_game_info,studio_score,game_info,platform_info
 
-external_stylesheets = [dbc.themes.VAPOR]
-app = Dash(__name__,external_stylesheets=external_stylesheets)
+dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
+own_css = "C:\\Users\\Cosmo\\Game_Dashboard\\assets\\styles.css"
+app = Dash(__name__,external_stylesheets=[dbc.themes.VAPOR, dbc_css, own_css])
 app.config.suppress_callback_exceptions = True
 default_layout = html.Div([html.H1('Стартовая страница дашборда по играм',style={'textAlign':'center'}),html.P("Выберите страницу слева для просмотра",style={'textAlign':'center'}),html.Img(src=app.get_asset_url("dataset-cover.png"), height=810, width=1440, style={'display':'block','margin-left':'7rem','margin-right':'auto'})])
 SIDEBAR_STYLE = {
