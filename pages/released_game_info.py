@@ -11,13 +11,13 @@ taildf1 = taildf.head(50)
 taildf2 = taildf.tail(115)
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=df.groupby(by="date").count().index, y=df.groupby(by="date").count()["index"], name='Amount', marker_color = '#a60c0c', mode="lines+markers"))
-fig.update_layout(xaxis_title_text = 'Year', yaxis_title_text = 'Amount', template = "plotly_dark", width = 1470, autosize = False, paper_bgcolor='rgba(0,0,0,0)', title = "Количество выпущенных игр по годам")
+fig.update_layout(font_family="Play", xaxis_title_text = 'Year', yaxis_title_text = 'Amount', template = "plotly_dark", width = 1470, autosize = False, paper_bgcolor='rgba(0,0,0,0)', title = "Количество выпущенных игр по годам")
 fig2 = go.Figure()
-fig2.add_trace(go.Histogram(x=taildf1.sort_index().index, y=taildf1.sort_values(by="index", ascending=False)["index"], histfunc="max", name='Amount', marker_color = '#a60c0c'))
-fig2.update_layout(xaxis_title_text = 'Genre', yaxis_title_text = 'Amount', template = "plotly_dark", width = 1470, autosize = False, paper_bgcolor='rgba(0,0,0,0)', title = "Количество выпущенных игр по жанрам (первая половина)")
+fig2.add_trace(go.Histogram(x=taildf1.sort_values(by="index", ascending=False).index, y=taildf1.sort_values(by="index", ascending=False)["index"], histfunc="max", name='Amount', marker_color = '#a60c0c'))
+fig2.update_layout(font_family="Play", xaxis_title_text = 'Genre', yaxis_title_text = 'Amount', template = "plotly_dark", width = 1470, autosize = False, paper_bgcolor='rgba(0,0,0,0)', title = "Количество выпущенных игр по жанрам (первая половина)")
 fig3 = go.Figure()
-fig3.add_trace(go.Histogram(x=taildf2.sort_index().index, y=taildf2.sort_values(by="index", ascending=False)["index"], histfunc="max", name='Amount', marker_color = '#a60c0c'))
-fig3.update_layout(xaxis_title_text = 'Genre', yaxis_title_text = 'Amount', template = "plotly_dark", width = 1470, autosize = False, paper_bgcolor='rgba(0,0,0,0)', title = "Количество выпущенных игр по жанрам (вторая половина)")
+fig3.add_trace(go.Histogram(x=taildf2.sort_values(by="index", ascending=False).index, y=taildf2.sort_values(by="index", ascending=False)["index"], histfunc="max", name='Amount', marker_color = '#a60c0c'))
+fig3.update_layout(font_family="Play", xaxis_title_text = 'Genre', yaxis_title_text = 'Amount', template = "plotly_dark", width = 1470, autosize = False, paper_bgcolor='rgba(0,0,0,0)', title = "Количество выпущенных игр по жанрам (вторая половина)")
 layout = dbc.Container([
     dbc.Row([
         dbc.Col([

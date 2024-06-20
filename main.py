@@ -5,8 +5,10 @@ from pages import games_score,released_game_info,studio_score,game_info,platform
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 own_css = "C:\\Users\\Cosmo\\Game_Dashboard\\assets\\styles.css"
 app = Dash(__name__,external_stylesheets=[dbc.themes.VAPOR, dbc_css, own_css])
+app.title = 'Game Dashboard'
+app._favicon = "favicon.png"
 app.config.suppress_callback_exceptions = True
-default_layout = html.Div([html.H1('Стартовая страница дашборда по играм',style={'textAlign':'center'}),html.P("Выберите страницу слева для просмотра",style={'textAlign':'center'}),html.Img(src=app.get_asset_url("dataset-cover.png"), height=810, width=1440, style={'display':'block','margin-left':'7rem','margin-right':'auto'})])
+default_layout = html.Div([html.H1('Стартовая страница дашборда по играм',style={'textAlign':'center'}),html.H3("Выберите страницу слева для просмотра",style={'textAlign':'center'}),html.Img(src=app.get_asset_url("dataset-cover.png"), height=810, width=1440, style={'display':'block','margin-left':'7rem','margin-right':'auto'})])
 SIDEBAR_STYLE = {
     "position": "fixed",
     "top": 0,
@@ -24,7 +26,7 @@ CONTENT_STYLE = {
 }
 sidebar = html.Div(
     [
-        html.H2("Дашборд по играм", className="display-6"),
+        html.H2("Дашборд по играм"),
         html.Hr(),
         dbc.Nav(
             [
@@ -63,14 +65,7 @@ def render_page_content(pathname):
         return platform_info.layout
     elif pathname == "/":
         return default_layout
-    return html.Div(
-        [
-            html.H1("404: Not found", className="text-danger"),
-            html.Hr(),
-            html.P(f"The pathname {pathname} was not recognised..."),
-        ],
-        className="p-3 bg-light rounded-3",
-    )
+    return html.Div([html.H1('Такой страницы не существует',style={'textAlign':'center'}),html.H3("Пожалуйста, не пишите адрес ссылки сами. Используйте меню слева",style={'textAlign':'center'}),html.Img(src=app.get_asset_url("404.png"), style={'display':'block','margin-left':'auto','margin-right':'auto'})])
 
 if __name__ == "__main__":
     app.run_server(debug=True)
